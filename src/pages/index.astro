@@ -1,0 +1,502 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+// --- DATA FOTO SLIDER HERO (KEMBALI KE ASLI) ---
+const heroImages = [
+  "https://placehold.co/1200x800/0f172a/ffffff/png?text=Bengkel+Profesional+Standar+Dealer", 
+  "https://placehold.co/1200x800/1e40af/ffffff/png?text=Sparepart+Lengkap+%26+Original",     
+  "https://placehold.co/1200x800/1e293b/ffffff/png?text=Mekanik+Berpengalaman",       
+];
+
+// --- DATA 3 PILAR (KEMBALI KE ASLI) ---
+const pillars = [
+    { 
+        title: "Servis Bergaransi", 
+        desc: "Pengerjaan presisi dengan alat scanner modern. Ada garansi servis 1 minggu.",
+        icon: "ph-seal-check", 
+        color: "text-blue-600",
+        bg: "bg-blue-50"
+    },
+    { 
+        title: "Sparepart Asli", 
+        desc: "Jaminan suku cadang 100% original dan pilihan aftermarket berkualitas.",
+        icon: "ph-package", 
+        color: "text-emerald-600",
+        bg: "bg-emerald-50"
+    },
+    { 
+        title: "Mekanik Jujur", 
+        desc: "Transparansi adalah kunci. Kami jelaskan kerusakan sebelum tindakan.",
+        icon: "ph-handshake", 
+        color: "text-orange-600",
+        bg: "bg-orange-50"
+    }
+];
+
+// --- DATA JASA (KEMBALI KE ASLI) ---
+const services = [
+  { title: "Servis Berkala", desc: "Ganti oli, cek rem, CVT, dan tune-up ringan.", price: "Mulai 45rb", icon: "ph-wrench" },
+  { title: "Perbaikan Mesin", desc: "Turun mesin, ganti seher, atasi ngebul/kasar.", price: "Estimasi", icon: "ph-engine" },
+  { title: "Injeksi & Sensor", desc: "Reset ECU, kalibrasi TPS, infus injektor.", price: "Alat Lengkap", icon: "ph-cpu" },
+  { title: "Kaki-kaki & Ban", desc: "Press segitiga, ganti ban, servis shockbreaker.", price: "Bergaransi", icon: "ph-gauge" },
+];
+
+// --- DATA HARGA JASA (KEMBALI KE ASLI) ---
+const prices = [
+  { item: "Jasa Servis Ringan (Matic Kecil)", price: "Rp 45.000" },
+  { item: "Jasa Servis Ringan (NMAX/PCX)", price: "Rp 55.000" },
+  { item: "Jasa Servis Sport 150cc", price: "Rp 65.000" },
+  { item: "Jasa Ganti Kampas Rem", price: "Rp 15.000" },
+  { item: "Jasa Ganti Ban Tubeless", price: "Rp 20.000/ban" },
+  { item: "Jasa Kuras Tangki", price: "Rp 35.000" },
+];
+
+// --- DATA SPAREPART (KEMBALI KE ASLI) ---
+const spareparts = [
+    { title: "Oli & Pelumas", brands: "Motul, Shell, Yamalube, AHM, Enduro", icon: "ph-drop-half-bottom", tag: "Terlaris" },
+    { title: "Ban Motor", brands: "Maxxis, FDR, Michelin, IRC, Corsa", icon: "ph-wheel", tag: "Lengkap" },
+    { title: "Aki / Battery", brands: "Yuasa, GS Astra, Motobatt", icon: "ph-battery-charging", tag: "Ready" },
+    { title: "Pengereman", brands: "Aspira, Elig, Nissin, Ori Pabrikan", icon: "ph-disc", tag: "Safety" },
+    { title: "Drive Belt", brands: "SSS, Gates, Ori Pabrikan", icon: "ph-link", tag: "Awet" },
+    { title: "Lampu & Listrik", brands: "Osram, Philips, Autovision", icon: "ph-lightbulb", tag: "Terang" },
+    { title: "Filter & Busi", brands: "NGK, Denso, Ferrox", icon: "ph-spark-plug", tag: "Racing" },
+    { title: "Aksesoris", brands: "Spion, Handgrip, Variasi", icon: "ph-shopping-bag", tag: "Variasi" },
+];
+
+// --- DATA VIDEO (KEMBALI KE ASLI) ---
+const videoTips = [
+    { 
+        title: "Ciri V-Belt Mau Putus & Cara Cek Fisik", 
+        desc: "Jangan tunggu putus di jalan! Lihat cara cek kondisi CVT.",
+        thumb: "https://placehold.co/640x360/1e40af/ffffff/png?text=Video+Cek+V-Belt", 
+        youtubeLink: "https://www.youtube.com/watch?v=CONTOH_1" 
+    },
+    { 
+        title: "Cara Darurat Atasi Motor Injeksi Mogok", 
+        desc: "Langkah pertolongan pertama sebelum dibawa ke bengkel.",
+        thumb: "https://placehold.co/640x360/1e40af/ffffff/png?text=Video+Motor+Mogok", 
+        youtubeLink: "https://www.youtube.com/watch?v=CONTOH_2" 
+    },
+    { 
+        title: "Review Jujur: Oli Palsu vs Asli", 
+        desc: "Hati-hati oli palsu bikin mesin rontok. Ini bedanya.",
+        thumb: "https://placehold.co/640x360/1e40af/ffffff/png?text=Video+Oli+Asli+Palsu", 
+        youtubeLink: "https://www.youtube.com/watch?v=CONTOH_3" 
+    },
+];
+
+// --- DATA BLOG (KEMBALI KE ASLI) ---
+const blogPosts = [
+    {
+        category: "Perawatan",
+        title: "Kenapa Motor Jarang Dipakai Tetap Harus Ganti Oli?",
+        date: "2 Des 2024",
+        image: "https://placehold.co/600x400/f1f5f9/1e293b/png?text=Ilustrasi+Oli"
+    },
+    {
+        category: "Info Umum",
+        title: "Denda Telat Pajak Motor & Cara Hitungnya",
+        date: "28 Nov 2024",
+        image: "https://placehold.co/600x400/f1f5f9/1e293b/png?text=Ilustrasi+Pajak"
+    },
+    {
+        category: "Modifikasi",
+        title: "Ukuran Ban Maksimal untuk Velg Standar Beat/Vario",
+        date: "20 Nov 2024",
+        image: "https://placehold.co/600x400/f1f5f9/1e293b/png?text=Ilustrasi+Ban"
+    }
+];
+
+const faq = [
+  { q: "Jam berapa bengkel buka?", a: "Kami buka setiap hari pukul 08.00 s/d 17.00 WIB (Senin - Minggu)." },
+  { q: "Apakah sparepartnya asli?", a: "Kami menyediakan opsi Original (Resmi) dan Aftermarket berkualitas. Anda bebas memilih sesuai budget." },
+  { q: "Bisa dipanggil ke rumah?", a: "Saat ini kami fokus pengerjaan di bengkel agar peralatan lebih lengkap dan maksimal." },
+];
+---
+
+<Layout title="OGENGPRESS" description="Solusi otomotif terpadu: Servis presisi, sparepart lengkap, dan edukasi perawatan motor.">
+	
+    <div class="bg-slate-950 text-slate-400 py-2 text-[12px] md:text-xs font-medium text-center tracking-wide border-b border-slate-800 relative z-50">
+        <div class="max-w-screen-xl mx-auto px-4 flex justify-center md:justify-between items-center">
+            <span class="flex items-center gap-2">    
+                <span class="text-slate-200">BUKA SETIAP HARI</span> pukul (08.00 - 17.00 WIB)
+            </span>
+            <span class="hidden md:inline opacity-70">Jl. Raya Contoh No. 123, Jakarta Selatan</span>
+        </div>
+    </div>
+
+    <nav class="bg-white border-b border-slate-200 sticky top-0 z-40 shadow-sm">
+        <div class="max-w-screen-xl mx-auto px-4 h-16 flex items-center justify-center md:justify-between">
+            
+            <a href="#" class="flex items-center gap-2 group">
+                <img 
+                    src="/op-logo.webp" 
+                    alt="Logo Ogeng Press" 
+                    class="h-12 md:h-14 w-auto object-contain" 
+                />
+            </a>
+
+            <div class="hidden lg:flex items-center space-x-8 text-sm font-bold text-slate-700">
+                <a href="#layanan" class="hover:text-blue-800 transition">SERVIS</a>
+                <a href="#sparepart" class="hover:text-blue-800 transition">SPAREPART</a>
+                <a href="#edukasi" class="hover:text-blue-800 transition">EDUKASI</a>
+                <a href="#lokasi" class="hover:text-blue-800 transition">LOKASI</a>
+            </div>
+
+            <a href="https://wa.me/6281234567890" class="hidden md:inline-flex items-center justify-center gap-2 px-5 py-2 text-sm font-bold text-white bg-blue-900 rounded-md hover:bg-blue-800 transition">
+                <i class="ph-bold ph-whatsapp-logo text-lg"></i> HUBUNGI KAMI
+            </a>
+
+        </div>
+    </nav>
+
+    <main>
+        <section class="relative h-[600px] flex items-center justify-center overflow-hidden bg-slate-900">
+            <div id="hero-slider" class="absolute inset-0 z-0">
+                {heroImages.map((img, index) => (
+                    <img 
+                        src={img} 
+                        alt="Suasana Bengkel" 
+                        class={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out ${index === 0 ? 'opacity-100' : 'opacity-0'}`} 
+                        fetchpriority={index === 0 ? "high" : "auto"}
+                        data-hero-slide 
+                    />
+                ))}
+                <div class="absolute inset-0 bg-slate-900/70 backdrop-blur-[2px]"></div>
+            </div>
+
+            <div class="relative z-10 w-full max-w-4xl mx-auto px-6 text-center mt-0">
+                <div class="inline-flex items-center gap-2 px-4 py-2 mb-6 border border-blue-400/30 bg-blue-900/40 text-blue-200 text-xs font-bold uppercase tracking-widest rounded-full backdrop-blur-md shadow-lg">
+                    <span class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
+                    One Stop Automotive Solution
+                </div>
+                
+                <h1 class="text-5xl md:text-7xl font-black text-white mb-6 leading-tight drop-shadow-2xl tracking-tight">
+                    SERVIS. SPAREPART. <br>
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-emerald-400">EDUKASI OTOMOTIF.</span>
+                </h1>
+                
+                <p class="text-lg md:text-xl text-slate-200 mb-10 leading-relaxed max-w-2xl mx-auto font-medium text-shadow">
+                    Lebih dari sekadar bengkel. Kami merawat motor Anda dengan standar dealer, menyediakan suku cadang lengkap, dan berbagi ilmu perawatan yang benar.
+                </p>
+                
+                <div class="flex flex-col sm:flex-row gap-4 justify-center items-center w-full">
+                    <a href="#layanan" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 bg-blue-600 text-white font-bold rounded-xl hover:bg-blue-700 transition uppercase text-base shadow-xl shadow-blue-600/20">
+                        Cek Layanan Servis
+                    </a>
+                    <a href="#sparepart" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 bg-white/10 backdrop-blur-sm border border-white/20 text-white font-bold rounded-xl hover:bg-white hover:text-slate-900 transition uppercase text-base shadow-xl">
+                        Cari Sparepart
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section class="relative -mt-10 z-20 px-4 mb-16">
+            <div class="max-w-screen-xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
+                {pillars.map(pilar => (
+                    <div class="bg-white p-6 rounded-2xl shadow-xl border border-slate-100 flex md:block items-center md:items-start gap-4 md:gap-0">
+                        <div class={`shrink-0 w-16 h-16 md:w-14 md:h-14 ${pilar.bg} ${pilar.color} rounded-xl flex items-center justify-center text-3xl mb-0 md:mb-4 shadow-sm`}>
+                            <i class={`ph-fill ${pilar.icon}`}></i>
+                        </div>
+                        <div>
+                            <h3 class="text-lg md:text-xl font-bold text-slate-900 mb-1 md:mb-2">{pilar.title}</h3>
+                            <p class="text-[15px] text-slate-500 leading-relaxed">{pilar.desc}</p>
+                        </div>
+                    </div>
+                ))}
+            </div>
+        </section>
+
+        <section id="layanan" class="py-16 md:py-20 bg-white">
+            <div class="max-w-screen-xl mx-auto px-4">
+                <div class="flex flex-col md:flex-row justify-between items-center md:items-end mb-10 gap-6 border-b border-slate-100 pb-6">
+                    <div class="text-center md:text-left w-full md:w-auto">
+                        <span class="text-blue-600 font-bold tracking-widest text-xs uppercase">Servis</span>
+                        <h2 class="text-3xl md:text-4xl font-extrabold text-slate-900 mt-2">Layanan Mekanik</h2>
+                    </div>
+                     <div class="w-full md:w-auto flex justify-center md:justify-end">
+                        <a href="https://wa.me/6281234567890?text=Halo+Bengkel,+saya+mau+booking+servis+motor..." class="inline-flex items-center justify-center gap-2 px-6 py-3 bg-blue-600 text-white font-bold rounded-lg hover:bg-blue-700 transition uppercase text-sm tracking-wider shadow-lg shadow-blue-600/20 w-full max-w-[220px] md:w-auto md:max-w-none">
+                             <i class="ph-bold ph-calendar-plus text-lg"></i> Booking Servis
+                        </a>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
+                    {services.map(item => (
+                        <div class="p-6 bg-slate-50 rounded-xl border border-slate-100 hover:border-blue-500 hover:bg-white hover:shadow-lg transition duration-300 flex flex-row md:flex-col items-center gap-4 md:gap-0 text-left md:text-center group min-h-[140px]">
+                            
+                            <div class="shrink-0 w-16 h-16 md:mx-auto md:mb-4 bg-white rounded-full flex items-center justify-center text-3xl text-blue-600 shadow-sm group-hover:bg-blue-600 group-hover:text-white transition">
+                                <i class={`ph-duotone ${item.icon}`}></i>
+                            </div>
+                            
+                            <div class="flex-grow">
+                                <h3 class="font-bold text-xl text-slate-900 mb-1">{item.title}</h3>
+                                <p class="text-[15px] text-slate-500 mb-2 leading-snug">{item.desc}</p>
+                                <span class="inline-block text-xs font-bold text-slate-600 bg-white border border-slate-200 px-3 py-1 rounded-full uppercase tracking-wider">{item.price}</span>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+
+                <div class="mt-12 bg-white border border-slate-200 rounded-xl overflow-hidden shadow-sm max-w-3xl mx-auto">
+                    <div class="bg-slate-900 p-4 px-6 flex justify-between items-center text-white">
+                        <h4 class="font-bold uppercase tracking-wide text-sm flex items-center gap-2">
+                             <i class="ph-fill ph-money"></i> Estimasi Biaya Jasa
+                        </h4>
+                        <span class="text-[10px] md:text-xs bg-slate-800 px-2 py-1 rounded text-slate-300">*Belum termasuk sparepart</span>
+                    </div>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-base text-left text-slate-600 min-w-[350px]">
+                            <tbody class="divide-y divide-slate-100">
+                                {prices.map(price => (
+                                    <tr class="hover:bg-blue-50/50 transition">
+                                        <td class="px-6 py-4 font-medium text-slate-900">{price.item}</td>
+                                        <td class="px-6 py-4 text-right font-bold text-blue-700 whitespace-nowrap">{price.price}</td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="sparepart" class="py-16 md:py-20 bg-slate-50">
+            <div class="max-w-screen-xl mx-auto px-4">
+                <div class="flex flex-col md:flex-row justify-between items-center md:items-end mb-10 gap-6 border-b border-slate-200 pb-6">
+                    <div class="text-center md:text-left w-full md:w-auto">
+                        <span class="text-emerald-600 font-bold tracking-widest text-xs uppercase">Suku Cadang</span>
+                        <h2 class="text-3xl md:text-4xl font-extrabold text-slate-900 mt-2">Stok Sparepart</h2>
+                    </div>
+                     <div class="w-full md:w-auto flex justify-center md:justify-end">
+                         <a href="https://wa.me/6281234567890?text=Halo+Bengkel,+saya+mau+cek+stok+sparepart..." class="inline-flex items-center justify-center gap-2 px-6 py-3 bg-green-600 text-white font-bold rounded-lg hover:bg-green-700 transition text-sm uppercase tracking-wider shadow-lg shadow-green-600/20 w-full max-w-[220px] md:w-auto md:max-w-none">
+                            <i class="ph-bold ph-whatsapp-logo text-lg"></i> Tanya Stok via WA
+                        </a>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
+                    {spareparts.map(part => (
+                        <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm hover:border-emerald-500 transition duration-300 relative group flex md:flex-col items-center md:items-start gap-4 md:gap-0">
+                            <span class="hidden md:block absolute top-4 right-4 text-[10px] font-bold text-emerald-700 bg-emerald-50 px-2 py-1 rounded uppercase tracking-wide">
+                                {part.tag}
+                            </span>
+                            
+                            <div class="shrink-0 w-16 h-16 bg-slate-50 rounded-lg flex items-center justify-center text-3xl text-emerald-600 group-hover:bg-emerald-600 group-hover:text-white transition md:mb-4">
+                                <i class={`ph-duotone ${part.icon}`}></i>
+                            </div>
+                            
+                            <div class="w-full">
+                                <div class="flex justify-between items-center mb-1">
+                                    <h3 class="font-bold text-lg text-slate-900 leading-none">{part.title}</h3>
+                                    <span class="md:hidden text-[10px] font-bold text-emerald-700 bg-emerald-50 px-2 py-1 rounded uppercase">
+                                        {part.tag}
+                                    </span>
+                                </div>
+                                
+                                <p class="text-sm text-slate-500 font-medium leading-snug">
+                                    Brands: <span class="text-slate-700">{part.brands}</span>
+                                </p>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+
+                <div class="mt-10 flex flex-wrap justify-center gap-4 md:gap-8 text-xs font-bold text-slate-500 uppercase tracking-wide opacity-80">
+                    <span class="flex items-center gap-2"><i class="ph-fill ph-check-circle text-emerald-500 text-lg"></i> 100% Original</span>
+                    <span class="flex items-center gap-2"><i class="ph-fill ph-check-circle text-emerald-500 text-lg"></i> Garansi Pasang</span>
+                    <span class="flex items-center gap-2"><i class="ph-fill ph-check-circle text-emerald-500 text-lg"></i> Harga Kompetitif</span>
+                </div>
+            </div>
+        </section>
+
+        <section id="edukasi" class="py-20 bg-white border-t border-slate-200">
+            <div class="max-w-screen-xl mx-auto px-4">
+                <div class="text-center mb-12">
+                    <span class="text-orange-500 font-bold tracking-widest text-xs uppercase">Edukasi</span>
+                    <h2 class="text-3xl md:text-4xl font-black text-slate-900 mt-2">Pojok Pengetahuan</h2>
+                    <p class="text-slate-500 mt-2 text-base md:text-lg">Tips dan trik merawat motor agar performa tetap maksimal.</p>
+                </div>
+
+                <div class="flex flex-col gap-12">
+                    <div>
+                        <h4 class="font-bold text-xl md:text-2xl text-slate-900 mb-6 flex items-center gap-3 border-b border-slate-100 pb-3">
+                            <i class="ph-fill ph-youtube-logo text-red-600 text-2xl"></i> Video Tutorial
+                        </h4>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+                            {videoTips.map(video => (
+                                <a href={video.youtubeLink} target="_blank" class="group block bg-white rounded-2xl overflow-hidden border border-slate-200 hover:shadow-xl transition duration-300">
+                                    <div class="relative aspect-video bg-slate-200 overflow-hidden">
+                                        <img src={video.thumb} class="w-full h-full object-cover group-hover:scale-105 transition duration-500" loading="lazy" />
+                                        <div class="absolute inset-0 flex items-center justify-center bg-black/20 group-hover:bg-black/10 transition">
+                                            <div class="bg-white/90 rounded-full p-4 shadow-lg transform group-hover:scale-110 transition">
+                                                <i class="ph-fill ph-play-circle text-red-600 text-4xl"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="p-6">
+                                        <h4 class="font-bold text-xl text-slate-900 group-hover:text-blue-600 transition leading-snug mb-2">{video.title}</h4>
+                                        <p class="text-base text-slate-500 line-clamp-2">{video.desc}</p>
+                                    </div>
+                                </a>
+                            ))}
+                        </div>
+                    </div>
+                     <div>
+                        <h4 class="font-bold text-xl md:text-2xl text-slate-900 mb-6 flex items-center gap-3 border-b border-slate-100 pb-3">
+                            <i class="ph-fill ph-article text-blue-600 text-2xl"></i> Artikel Terbaru
+                        </h4>
+
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+                            {blogPosts.map(post => (
+                                <a href="#" class="group block bg-white rounded-2xl overflow-hidden border border-slate-200 hover:border-blue-300 hover:shadow-lg transition duration-300 h-full flex flex-col">
+                                    <div class="h-60 bg-slate-100 overflow-hidden relative">
+                                        <img src={post.image} class="w-full h-full object-cover group-hover:scale-105 transition duration-500" loading="lazy" />
+                                        <div class="absolute top-3 left-3 bg-blue-600 text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wide shadow-md">
+                                            {post.category}
+                                        </div>
+                                    </div>
+                                    <div class="p-5 flex flex-col flex-grow">
+                                        <span class="text-xs font-bold text-slate-400 uppercase mb-2 flex items-center gap-1">
+                                            <i class="ph-bold ph-calendar-blank"></i> {post.date}
+                                        </span>
+                                        <h4 class="font-bold text-lg text-slate-900 group-hover:text-blue-600 transition leading-tight mb-3">{post.title}</h4>
+                                        
+                                        <div class="mt-auto pt-4 border-t border-slate-100">
+                                            <span class="text-sm font-bold text-blue-600 flex items-center gap-2 group-hover:gap-3 transition-all">
+                                                Baca Selengkapnya <i class="ph-bold ph-arrow-right"></i>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </a>
+                            ))}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-16 bg-slate-50 border-t border-slate-200">
+            <div class="max-w-screen-md mx-auto px-4">
+                <h2 class="text-2xl md:text-3xl font-bold text-slate-900 mb-8 text-center uppercase tracking-wide">Pertanyaan Umum</h2>
+                <div class="grid gap-4 text-left">
+                    {faq.map(item => (
+                        <div class="bg-white p-6 border border-slate-200 rounded-lg shadow-sm">
+                            <h3 class="font-bold text-lg text-slate-900 mb-2 flex gap-3 items-start">
+                                 <i class="ph-fill ph-question text-blue-600 mt-1"></i> <span>{item.q}</span>
+                            </h3>
+                            <p class="text-base text-slate-600 ml-8 leading-relaxed">{item.a}</p>
+                        </div>
+                    ))}
+                </div>
+            </div>
+        </section>
+
+        <footer id="lokasi" class="bg-slate-950 text-slate-400 py-16 border-t-4 border-blue-600">
+            <div class="max-w-screen-xl mx-auto px-4">
+                <div class="grid md:grid-cols-3 gap-12 mb-12">
+                    <div>
+                        <div class="flex items-center gap-2 mb-6 text-white">
+                             <div class="w-8 h-8 bg-blue-600 flex items-center justify-center rounded-md text-lg font-bold">
+                                <i class="ph-bold ph-wrench"></i>
+                            </div>
+                            <span class="text-2xl font-bold tracking-tight">OGENG<span class="text-blue-500">PRESS</span></span>
+                        </div>
+                        <p class="text-base leading-relaxed mb-6 text-slate-400">
+                            Partner terbaik perawatan motor Anda. Menggabungkan keahlian mekanik senior dengan manajemen modern yang transparan.
+                        </p>
+                    </div>
+
+                    <div>
+                        <h3 class="text-white font-bold uppercase tracking-wider mb-6 text-base">Menu Utama</h3>
+                        <ul class="space-y-3 text-base font-medium">
+                            <li><a href="#" class="hover:text-blue-500 transition flex items-center gap-2">Home</a></li>
+                            <li><a href="#layanan" class="hover:text-blue-500 transition flex items-center gap-2">Servis & Harga</a></li>
+                            <li><a href="#sparepart" class="hover:text-blue-500 transition flex items-center gap-2">Stok Sparepart</a></li>
+                            <li><a href="#edukasi" class="hover:text-blue-500 transition flex items-center gap-2">Tips & Trik</a></li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <h3 class="text-white font-bold uppercase tracking-wider mb-6 text-base">Hubungi Kami</h3>
+                        <ul class="space-y-4 text-base">
+                            <li class="flex items-start gap-3">
+                                <i class="ph-fill ph-map-pin text-blue-500 text-xl mt-0.5"></i>
+                                <span>Jl. Raya Contoh No. 123, Jakarta Selatan.<br><span class="text-xs text-slate-500">(Patokan: Sebelah Indomaret)</span></span>
+                            </li>
+                            <li class="flex items-center gap-3">
+                                <i class="ph-fill ph-whatsapp-logo text-green-500 text-xl"></i>
+                                <span>0812-3456-7890</span>
+                            </li>
+                            <li class="flex items-center gap-3">
+                                <i class="ph-fill ph-clock text-yellow-500 text-xl"></i>
+                                <span>08.00 - 17.00 (Buka Tiap Hari)</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="w-full h-64 bg-slate-800 rounded-xl overflow-hidden border border-slate-700 relative group mb-8 shadow-inner">
+                    <div class="absolute inset-0 flex flex-col items-center justify-center text-slate-600 bg-slate-800">
+                        <i class="ph-duotone ph-map-trifold text-5xl mb-2"></i>
+                        <span class="text-sm font-bold uppercase tracking-widest">[Area Google Maps Embed]</span>
+                    </div>
+                    <a href="https://goo.gl/maps/placeholder" target="_blank" class="absolute bottom-4 right-4 bg-white text-slate-900 text-xs font-bold px-4 py-2 rounded-lg shadow-lg hover:bg-blue-50 transition z-10 flex items-center gap-2">
+                        Buka di Google Maps ↗
+                    </a>
+                </div>
+
+                <div class="border-t border-slate-800 pt-8 text-center text-sm text-slate-600 font-medium uppercase tracking-wide">
+                    <p>© {new Date().getFullYear()} Bengkel Motor Ayah. Hak Cipta Dilindungi.</p>
+                </div>
+            </div>
+        </footer>
+    </main>
+
+    <div class="fixed bottom-0 left-0 w-full bg-white/95 backdrop-blur border-t border-slate-200 shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.05)] md:hidden z-50 flex pb-safe h-16">
+        
+        <a href="#layanan" class="flex-1 flex flex-col items-center justify-center group active:bg-slate-50 transition">
+            <i class="ph-fill ph-wrench text-2xl mb-1 text-slate-400 group-hover:text-blue-600 group-active:text-blue-600"></i>
+            <span class="text-[11px] font-bold uppercase text-slate-500 group-active:text-blue-600">Servis</span>
+        </a>
+        
+        <a href="#sparepart" class="flex-1 flex flex-col items-center justify-center group active:bg-slate-50 transition">
+            <i class="ph-fill ph-shopping-cart text-2xl mb-1 text-slate-400 group-hover:text-emerald-600 group-active:text-emerald-600"></i>
+            <span class="text-[11px] font-bold uppercase text-slate-500 group-active:text-emerald-600">Part</span>
+        </a>
+        
+        <a href="#edukasi" class="flex-1 flex flex-col items-center justify-center group active:bg-slate-50 transition">
+            <i class="ph-fill ph-student text-2xl mb-1 text-slate-400 group-hover:text-orange-600 group-active:text-orange-600"></i>
+            <span class="text-[11px] font-bold uppercase text-slate-500 group-active:text-orange-600">Tips</span>
+        </a>
+
+        <a href="https://wa.me/6281234567890" class="flex-1 flex flex-col items-center justify-center group active:bg-slate-50 transition">
+            <i class="ph-fill ph-whatsapp-logo text-2xl mb-1 text-green-600"></i>
+            <span class="text-[11px] font-bold uppercase text-green-700">Chat</span>
+        </a>
+
+    </div>
+
+    <script>
+        const slides = document.querySelectorAll('[data-hero-slide]');
+        let currentSlide = 0;
+        const totalSlides = slides.length;
+        if (totalSlides > 0) {
+            setInterval(() => {
+                slides[currentSlide].classList.remove('opacity-100');
+                slides[currentSlide].classList.add('opacity-0');
+                currentSlide = (currentSlide + 1) % totalSlides;
+                slides[currentSlide].classList.remove('opacity-0');
+                slides[currentSlide].classList.add('opacity-100');
+            }, 5000);
+        }
+    </script>
+
+    <style is:global>
+        html { scroll-behavior: smooth; }
+        body { padding-bottom: 0 !important; }
+        footer { padding-bottom: 5rem !important; }
+    </style>
+</Layout>
+[cite_start]``` [cite: 1, 2, 3, 4, 6, 83, 84, 85, 87, 95]

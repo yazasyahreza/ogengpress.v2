@@ -1,0 +1,105 @@
+---
+import '../styles/global.css';
+
+interface Props {
+	title: string;
+	description: string;
+    image?: string; // Opsional: Foto untuk share WA
+}
+
+// Default image jika tidak ada foto khusus (Ganti link ini nanti dengan foto asli)
+const { title, description, image = "https://placehold.co/1200x630/1e40af/ffffff/png?text=BENGKEL+MOTOR+AYAH" } = Astro.props;
+
+// URL Website (Nanti diganti saat sudah online)
+const siteUrl = "https://bengkel-ayah.com"; 
+---
+
+<!doctype html>
+<html lang="id" class="scroll-smooth">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta name="generator" content={Astro.generator} />
+
+        <title>{title}</title>
+		<meta name="description" content={description} />
+        <link rel="canonical" href={siteUrl} />
+
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content={siteUrl} />
+        <meta property="og:title" content={title} />
+        <meta property="og:description" content={description} />
+        <meta property="og:image" content={image} />
+        <meta property="twitter:card" content="summary_large_image" />
+        <meta property="twitter:title" content={title} />
+        <meta property="twitter:description" content={description} />
+        <meta property="twitter:image" content={image} />
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="icon" type="image/png" href="/op-icon.png" />
+        <link href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,300;0,400;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+        <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+        <script type="application/ld+json">
+        {
+          "@context": "https://schema.org",
+          "@type": "MotorcycleRepair",
+          "name": "Bengkel Motor Ayah",
+          "image": "https://placehold.co/800x600/1e40af/ffffff/png?text=Foto+Bengkel", 
+          "telephone": "6281234567890",
+          "url": "https://bengkel-ayah.com",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "Jl. Raya Contoh No. 123",
+            "addressLocality": "Jakarta Selatan",
+            "addressRegion": "DKI Jakarta",
+            "postalCode": "12345",
+            "addressCountry": "ID"
+          },
+          "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": -6.200000, 
+            "longitude": 106.816666
+          },
+          "openingHoursSpecification": {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": [
+              "Monday",
+              "Tuesday",
+              "Wednesday",
+              "Thursday",
+              "Friday",
+              "Saturday",
+              "Sunday"
+            ],
+            "opens": "08:00",
+            "closes": "16:00"
+          },
+          "priceRange": "$$"
+        }
+        </script>
+	</head>
+	<body class="bg-white text-slate-800 antialiased font-sans pb-20 md:pb-0 selection:bg-blue-100 selection:text-blue-900"> 
+		<slot />
+	</body>
+</html>
+
+<style is:global>
+    :root {
+        font-family: 'Barlow', sans-serif;
+    }
+    
+    /* Perbaikan Tipografi Judul */
+    h1, h2, h3, h4, h5, h6 {
+        font-weight: 700;
+        letter-spacing: -0.01em;
+        text-transform: uppercase;
+    }
+
+    button, .btn, a[class*="bg-"] {
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.03em;
+    }
+</style>
